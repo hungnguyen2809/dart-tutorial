@@ -1,9 +1,11 @@
 // import 'package:dart_application_tutorial/dart_application_tutorial.dart' as dart_application_tutorial;
 import 'package:dart_application_tutorial/functions.dart';
+import 'package:dart_application_tutorial/models/bycycle.dart';
 import 'package:dart_application_tutorial/models/car.dart';
+import 'package:dart_application_tutorial/repositories/movie_repository.dart';
 // import 'package:dart_application_tutorial/models/vehicle.dart';
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
   // print('Hello world: ${dart_application_tutorial.calculate()}!');
   // print('Hello: ${dart_application_tutorial.generateString()}!');
 
@@ -129,9 +131,116 @@ void main(List<String> arguments) {
   // bmw.year = 2022;
   print(bmw);
 
-  bmw.describe();
-  print('Age: ${bmw.age}');
+  // bmw.describe();
+  // print('Age: ${bmw.age}');
 
-  bmw.age = 5; // cannot change property unless you add setter method
-  print('Age: ${bmw.age}');
+  // bmw.age = 5; // cannot change property unless you add setter method
+  // print('Year: ${bmw.year}');
+
+  Bicycle bicycle1 = Bicycle(name: 'Bicycle', year: 2021, hasBasket: true);
+  print(bicycle1);
+
+  Bicycle bicycle2 = Bicycle(name: 'Bicycle', year: 2021, hasBasket: true);
+  print(bicycle2);
+
+  // if (bicycle1.equals(bicycle2)) {
+  //   print('bicycle1 equals bicycle2 has the same content');
+  // } else {
+  //   print('bicycle1 not equals bicycle2');
+  // }
+  if (bicycle1 == bicycle2) {
+    print('bicycle1 equals bicycle2 has the same content');
+  } else {
+    print('bicycle1 not equals bicycle2');
+  }
+
+  Bicycle bicycle3 = bicycle1;
+  if (identical(bicycle3, bicycle1)) {
+    print('bicycle3 and bicycle1 have the same reference');
+  }
+
+  // print(bicycle1.hashCode);
+  // print(bicycle2.hashCode);
+  // print(bicycle3.hashCode);
+
+  Bicycle bicycle4 = bicycle1.copyWith(name: 'Bicycle 4', year: 2019);
+  print(bicycle4);
+
+  print('maxSpeed: ${Bicycle.maxSpeed}');
+
+  List<Car> cars = [
+    Car('BMW', 2020, 2.0, 100),
+    Car('Mercedes', 2021, 2.0, 200),
+    Car('Audi', 2022, 2.0, 90),
+    Car('Toyota', 2023, 2.0, 300),
+    Car('Honda', 2024, 2.0, 90),
+    Car('Kia', 2025, 2.0, 200),
+    Car('Mazda', 2026, 2.0, 78),
+    Car('Tesla', 2027, 2.0, 200),
+    Car('Ford', 2028, 2.0, 150),
+  ];
+
+  cars.insert(0, Car('Lexus', 2020, 2.0, 200));
+
+  // print(cars);
+  cars.asMap().forEach((index, value) {
+    print('$index: $value');
+  });
+
+  print('\n');
+
+  List<Car> filterCars =
+      cars.where((car) => car.year > 2022 && car.year <= 2025).toList();
+
+  filterCars.asMap().forEach((index, value) {
+    print('$index: $value');
+  });
+
+  print('\n');
+  print('sortedCars by horsePower');
+  List<Car> sortedCars = [...cars];
+  sortedCars.sort((a, b) => a.horsePower.compareTo(b.horsePower));
+  sortedCars.asMap().forEach((index, value) {
+    print('$index: $value');
+  });
+
+  print('\n');
+  List<String> carNames = cars.map((car) => car.name).toList();
+  print(carNames);
+
+  print('\n');
+  final Map<String, Object> user = {
+    'name': 'Hùng',
+    'age': 18,
+    'email': 'hungnguyen99.nvh@gmail.com'
+  };
+  print(user);
+  user['name'] = 'Hung Nguyen'; // can not change value when const
+  print(user);
+
+/**
+  print('\n');
+  print('begin task1');
+  fetchMovies().then((movies) {
+    print('finished task1');
+    print(movies);
+  });
+
+  print('begin task2');
+  fetchMovies().then((movies) {
+    print('finished task2');
+    print(movies);
+  });
+ */
+
+  print('\n');
+  print('begin task1');
+  final movie1 = await fetchMovies();
+  print('finished task1');
+  print('movie1: $movie1');
+
+  print('begin task2');
+  final movie2 = await fetchMovies();
+  print('finished task2');
+  print('movie2: $movie2');
 }
