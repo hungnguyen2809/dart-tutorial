@@ -1,6 +1,7 @@
 // import 'package:dart_application_tutorial/dart_application_tutorial.dart' as dart_application_tutorial;
-
 import 'package:dart_application_tutorial/functions.dart';
+import 'package:dart_application_tutorial/models/car.dart';
+// import 'package:dart_application_tutorial/models/vehicle.dart';
 
 void main(List<String> arguments) {
   // print('Hello world: ${dart_application_tutorial.calculate()}!');
@@ -48,4 +49,89 @@ void main(List<String> arguments) {
       callback: (int total) {
         print('Callback => total: $total');
       });
+
+  final List<String> carBrands = [
+    'BMW',
+    'Mercedes',
+    'Audi',
+    'Toyota',
+    'Honda',
+    'Kia',
+    'Mazda',
+    'Tesla',
+    'Ford',
+  ];
+
+  // carBrands = ['BMW', 'Mercedes']; // can't reassign value to final variable
+  // carBrands[0] =
+  //     'BMW 2'; // can change value of final variable, but can't reassign value to final variable
+
+  // const List<String> carBrands2 = [
+  //   'BMW',
+  //   'Mercedes',
+  //   'Audi',
+  //   'Toyota',
+  //   'Honda',
+  //   'Kia',
+  //   'Mazda',
+  // ];
+  // carBrands2[0] = 'BMW 2'; // can't change value of const variable
+
+  // print(carBrands);
+  print('There are ${carBrands.length} car brands');
+
+  // for (var i = 0; i < carBrands.length; i++) {
+  //   print(carBrands[i]);
+  // }
+
+  // carBrands.forEach((carBrand) {
+  //   print(carBrand);
+  // });
+
+  // for (var carBrand in carBrands) {
+  //   print(carBrand);
+  // }
+
+  // carBrands.shuffle(); // shuffle list
+  // carBrands.asMap().forEach((index, carBrand) {
+  //   print('$index: $carBrand');
+  // });
+
+  // carBrands.add('Toyota 2'); // add new item to list (at the end)
+  // print(carBrands);
+
+  // carBrands.insert(0, 'BMW 2'); // add new item to list (at the 0)
+  // print(carBrands);
+
+  // carBrands.remove('BMW'); // remove item from list
+  // carBrands.removeAt(0); // remove item at index 0 from list
+  // carBrands.removeWhere((carBrand) => carBrand == 'BMW'); // remove item from list
+  // carBrands.removeRange(0, 2); // remove item from list
+  // carBrands.clear(); // remove all items from list
+
+  // List<String> carBrandsClone = [...carBrands]; // clone list
+  // carBrandsClone[0] = 'BMW 2';
+  // print('carBrandsClone: $carBrandsClone');
+
+  // print('sort ascending');
+  // carBrands.sort((a, b) => a.compareTo(b)); // sort list ascending
+  // print(carBrands);
+
+  // print('sort descending');
+  // carBrands.sort((a, b) => b.compareTo(a)); // sort list descending
+  // print(carBrands);
+
+  // Vehicle bmw = Vehicle('BMW', 2021);
+  // print(bmw.toString());
+
+  Car bmw = Car('BMW', 2020, 2.0, 200);
+  // bmw.name = 'BMW 2';
+  // bmw.year = 2022;
+  print(bmw);
+
+  bmw.describe();
+  print('Age: ${bmw.age}');
+
+  bmw.age = 5; // cannot change property unless you add setter method
+  print('Age: ${bmw.age}');
 }

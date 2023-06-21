@@ -26,8 +26,8 @@ String getDate({int? day, int? month, int? year}) {
 }
 
 void doSomething({int param1 = 0, int param2 = 0, Function? callback}) {
-  print('param1: $param1');
-  print('param2: $param2');
+  // print('param1: $param1');
+  // print('param2: $param2');
 
   callback!(param1 + param2); // ! = not null assertion operator
 }
